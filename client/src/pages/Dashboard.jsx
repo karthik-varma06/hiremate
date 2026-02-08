@@ -5,7 +5,7 @@ export default function Dashboard() {
   const [apps, setApps] = useState([]);
   const [selected, setSelected] = useState(null);
 
-  const API = "http://localhost:5000";
+  const API = "https://hiremate-api.onrender.com";
 
   const fetchApps = () => {
     fetch(`${API}/api/applications`)

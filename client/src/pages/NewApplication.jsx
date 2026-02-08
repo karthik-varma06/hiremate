@@ -9,8 +9,8 @@ export default function NewApplication() {
   const [suggestions, setSuggestions] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const API = "http://localhost:5000";
-
+  const API = "https://hiremate-api.onrender.com";
+  
   const generate = async () => {
     setLoading(true);
 
