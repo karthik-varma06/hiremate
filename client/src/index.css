@@ -3,5 +3,24 @@
 @tailwind utilities;
 
 body {
-  @apply bg-slate-50 text-slate-800;
+  background: #0b1220;
+}
+body {
+  background: #0b1220;
+  color: white;
+}
+/* ===== LOGO MARQUEE ===== */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

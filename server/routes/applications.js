@@ -1,39 +1,36 @@
-import express from "express";
-import Application from "../models/Application.js";
-
+const express = require("express");
 const router = express.Router();
+const mongoose = require("mongoose");
 
-// SAVE
+const Application = mongoose.model(
+  "Application",
+  new mongoose.Schema({
+    company: String,
+    role: String,
+    resumeText: String,
+    jobDescription: String,
+    coverLetter: String,
+
+    // ✅ IMPORTANT FIX
+    suggestions: [String],   // must be array
+
+    createdAt: { type: Date, default: Date.now }
+  })
+);
+
+router.get("/", async (req, res) => {
+  const apps = await Application.find().sort({ createdAt: -1 });
+  res.json(apps);
+});
+
 router.post("/", async (req, res) => {
   try {
-    const app = await Application.create(req.body);
+    const app = new Application(req.body);
+    await app.save();
     res.json(app);
   } catch (err) {
-    console.log("POST error:", err);
     res.status(500).json({ error: "Save failed" });
   }
 });
 
-// GET ALL
-router.get("/", async (req, res) => {
-  try {
-    const apps = await Application.find().sort({ createdAt: -1 });
-    res.json(apps);
-  } catch (err) {
-    console.log("GET error:", err);
-    res.status(500).json({ error: "Failed to fetch" });
-  }
-});
-
-// DELETE
-router.delete("/:id", async (req, res) => {
-  try {
-    await Application.findByIdAndDelete(req.params.id);
-    res.json({ ok: true });
-  } catch (err) {
-    console.log("DELETE error:", err);
-    res.status(500).json({ error: "Delete failed" });
-  }
-});
-
-export default router;
+module.exports = router;
