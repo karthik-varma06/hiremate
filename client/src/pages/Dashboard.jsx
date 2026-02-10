@@ -8,14 +8,14 @@ export default function Dashboard() {
 
   // LOAD APPLICATIONS
   useEffect(() => {
-    fetch("http://localhost:5000/api/applications")
+    fetch("https://hiremate-api.onrender.com/api/applications")
       .then((res) => res.json())
       .then((data) => setApps(data));
   }, []);
 
   // DELETE APPLICATION
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/applications/${id}`, {
+    await fetch(`https://hiremate-api.onrender.com/api/applications/${id}`, {
       method: "DELETE",
     });
 

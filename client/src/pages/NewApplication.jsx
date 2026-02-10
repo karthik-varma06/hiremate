@@ -33,7 +33,7 @@ export default function NewApplication() {
       }
 
       const res = await axios.post(
-        "http://localhost:5000/api/generate",
+        "https://hiremate-api.onrender.com/api/generate",
         formData
       );
 
@@ -52,14 +52,17 @@ export default function NewApplication() {
   // =========================
   const saveApplication = async () => {
     try {
-      await axios.post("http://localhost:5000/api/applications", {
-        company,
-        role,
-        resumeText: resume,
-        jobDescription,
-        coverLetter: generated,
-        suggestions,
-      });
+      await axios.post(
+        "https://hiremate-api.onrender.com/api/applications",
+        {
+          company,
+          role,
+          resumeText: resume,
+          jobDescription,
+          coverLetter: generated,
+          suggestions,
+        }
+      );
 
       alert("Saved successfully!");
     } catch (err) {
