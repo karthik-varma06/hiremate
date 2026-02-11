@@ -53,7 +53,7 @@ Return ONLY valid JSON like:
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "openai/gpt-3.5-turbo",
+        model: "google/gemma-3n-e2b-it:free",
         messages: [{ role: "user", content: prompt }]
       },
       {

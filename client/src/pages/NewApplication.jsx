@@ -34,7 +34,8 @@ export default function NewApplication() {
 
       const res = await axios.post(
         "https://hiremate-api.onrender.com/api/generate",
-        formData
+        formData,
+        { timeout: 60000 }
       );
 
       setGenerated(res.data.coverLetter);
